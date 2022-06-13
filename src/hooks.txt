@@ -29,7 +29,6 @@ return (
 export default App;
 
 
-
 //////////////////////////////////////////////////////////////////////////  useHover
 
 import {useEffect, useState} from "react";
@@ -251,4 +250,86 @@ function App() {
 
 export default App;
 
-///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////. useContext
+
+import {createContext, Dispatch, FC, SetStateAction, useState, useMemo, useContext
+} from "react";
+
+// interface IContext {
+//     isAuth: Boolean
+//     setIsAuth: Dispatch<SetStateAction<boolean>>
+// }
+
+//export const AuthContext = createContext<IContext> ({} as IContext);
+
+// export const AuthProvider:FC = ({children}) => {
+//     const [isAuth, setIsAuth] = useState(false);
+
+//     const value = useMemo(() => ({
+//         isAuth,
+//         setIsAuth
+//         }), [isAuth])
+
+//     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+// };
+
+export const useAuth = () => useContext(AuthContext); //хук для получения контекста
+
+//-----------------------
+//обернули приложение
+//<AuthProvider>
+//<App/>
+//</AuthProvider>
+
+//---------------------
+
+//import {AuthContext, useAuth} from './AuthContext'
+
+//const App: FC = () => {
+    //const {isAuth} = useContext(AuthContext); //получили переменную isAuth
+//     const {isAuth} = useAuth() //аналогично получили переменную isAuth
+//     return (
+//         <>{isAuth}</>
+//     )
+// }
+
+
+///////////////////////////////////////////////////////////////// useTypedSelector
+
+import {TypedUseSelectorHook, useSelector} from "react-redux";
+//export const useTypedSelector:TypedUseSelectorHook<RootState> =useSelector;
+// ПОЛУЧИЛИ ТИПИЗИРОВАННЫЙ ХУК
+//-----------------------
+//import { useTypedSelector} from './useTypedSelector'
+
+//const App: FC = () => {
+//const appContent = useTypedSelector(state => state.people); //получили часть state
+// вместо const appContent = useTypedSelector(state: RootState....
+//     return (
+//         <>{appContent}</>
+//     )
+// }
+
+
+///////////////////////////////////////////////////////////////// useActions 
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as AllActions from "../store/actions";
+
+//const useActions = () => {
+//   const dispatch = useDispatch();
+// return bindActionCreators(AllActions, dispatch)
+//}
+
+//export default useActions;
+//-----------------------
+//import { useActions} from './useActions'
+
+//const App: FC = () => {
+//const { changeName } = useActions(); //получили экшн changeName
+// 
+//     return (
+//         <>{...}</>
+//     )
+// }
+//////////////////////////////////////////////////////////////
