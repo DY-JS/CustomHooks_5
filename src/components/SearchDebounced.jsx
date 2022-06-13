@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
-
 import useDebounce from "./hooks/useDebounce";
-import useRequest from "./hooks/useRequest";
 
 function Search() {
     const [value, setValue] = useState('');
