@@ -4,10 +4,10 @@ export default function useDebounce(callback, delay) {
     const timer = useRef();
 
     const debouncedCallback = useCallback((...args) => {
-        if (timer.current) {
-            clearTimeout(timer.current)
+        if (timer.current) {       //ф-ция перезаписывается каждый раз пока идёт ввод, 
+            clearTimeout(timer.current) //очистка
         }
-        timer.current = setTimeout(() => {
+        timer.current = setTimeout(() => { //а когда нет ввода через время callback выполнится
             callback(...args)
         }, delay)
     }, [callback, delay])

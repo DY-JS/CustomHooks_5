@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
-import List from "./components/List";
-import useDebounce from "./hooks/useDebounce";
 import axios from "axios";
+
+import List from "./components/List";
+
+import useDebounce from "./hooks/useDebounce";
+import useInput from "./hooks/useInput";
 import useRequest from "./hooks/useRequest";
 
 function App() {
-    const [todos, loading, error] = useRequest(fetchTodos)
+    const [todos, loading, error] = useRequest(fetchTodos);
+    const username = useInput('');
 
     function fetchTodos() {
         return axios.get(`https://jsonplaceholder.typicode.com/todos`)
@@ -19,8 +23,6 @@ function App() {
         return <h1>Произошла ошибка при загрузке данных</h1>
     }
 
-
-
     return (
         <div>
             {todos && todos.map(todo =>
@@ -28,6 +30,7 @@ function App() {
                     {todo.id}. {todo.title}
                 </div>
             )}
+            <input {...username} type="text" placeholder='Username' />
         </div>
     );
 }

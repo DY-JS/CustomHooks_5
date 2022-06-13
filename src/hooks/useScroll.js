@@ -16,10 +16,11 @@ export default function useScroll(parentRef, childRef, callback) {
             }
         }, options)
 
-        observer.current.observe(childRef.current)
+        observer.current.observe(childRef.current) //подписка слежки за контрольной областью для пересечения
 
         return function () {
-            observer.current.unobserve(childRef.current)
+            observer.current.unobserve(childRef.current) //отписка слежки за областью для пересечения
         };
     }, [callback])
 };
+//если происходит пересечение заданной области-выполняется callback

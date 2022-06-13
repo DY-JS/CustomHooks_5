@@ -1,13 +1,13 @@
 import {useEffect, useState} from "react";
 
-export default function (request) {
+export default function (request) { //в качестве пар-ра ф-ция-запрос
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
     useEffect(() => {
         setLoading(true)
-        setTimeout(() => {
+        setTimeout(() => { //setTimeout просто для наглядности запроса
             request()
                 .then(response => setData(response.data))
                 .catch(error => setError(error))

@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import useScroll from "../hooks/useScroll";
+import useScroll from "../hooks/useScroll";  //сработает сразу при достижении области childRef
 
 const List = () => {
     const [todos, setTodos] = useState([])
@@ -8,6 +8,7 @@ const List = () => {
     const parentRef = useRef();
     const childRef = useRef();
     const intersected = useScroll(parentRef, childRef, () => fetchTodos(page, limit));
+    //сработает fetchTodos(page, limit) при достижении области childRef
 
     function fetchTodos(page, limit) {
         fetch(`https://jsonplaceholder.typicode.com/todos?_limit=${limit}&_page=${page}`)
