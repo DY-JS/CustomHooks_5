@@ -12,6 +12,28 @@ export default function useInput(initialValue) {             //!!! useInput
     }
 };
 
+
+
+//////////////////////////////////////////// //!!! useInput TS
+
+// import {useState, ChangeEvent} from "react";
+
+// export default function useInput(initialValue: any) {
+//     const [value, setValue] = useState(initialValue);
+
+//     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+//         setValue(e.target.value)
+//     }
+
+//     const reset = () => {
+//         setValue(initialValue)
+//     }
+
+//     return {
+//         value, onChange, reset
+//     }
+// };
+
 ----------------
 import useInput from "./hooks/useInput";
 
@@ -332,4 +354,130 @@ import * as AllActions from "../store/actions";
 //         <>{...}</>
 //     )
 // }
-//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////  useLocalStorage
+
+import { useEffect, useState } from "react";
+
+// export const useLocalStorage = (key: string, initialValue: any) => {
+//   const [value setValue] = useState(()=> {
+//       const json = localStorage.getItem(key);
+//       if(json!==null) return JSON.parse(json);
+//       return initialValue;
+//   });
+//   useEffect(() => {
+//       localStorage.setItem(key, JSON.stringify(value))
+//   }, [key, value]);
+
+//   return [value, setValue]
+// }
+
+//-----------------------
+//import { useLocalStorage} from './useLocalStorage'
+//import {initialState} from './reducer'
+
+//const App: FC = () => {
+//const { todos, setTodos } = useLocalStorage('todos', initialState); //применение useLocalStorage
+// 
+//     return (
+//         <>{todos}</>
+//     )
+// }
+
+
+///////////////////////////////////////////////////////////useCookie
+
+import Cookies from "js-cookie";  //cкачали либу
+import { useEffect, useState, useCallback } from "react";
+
+// export const useCookie = (name, initialValue) => {
+//   const [value setValue] = useState(()=> {
+//       const cookie = Cookies.get(name);
+//       if(cookie) return cookie;
+//       Cookies.set(name, initialValue);
+//       return initialValue;
+//   });
+
+//   const updateCookie =  useCallback((newVal, options) => {
+//      Cookies.set(name, newVal, options);
+//      setValue(newVal)
+//   }, [name]);
+
+//   const deleteCookie = useCallback(() => {
+//      Cookies.remove(name);
+//      setValue(null);
+//}, [name]);
+
+//   return [value, updateCookie, deleteCookie]
+// }
+
+//-----------------------
+
+//import { useCookie} from './useCookie'
+
+
+//const App: FC = () => {
+//const [value, updateCookie, deleteCookie] = useCookiege('token', ''); //применение 
+// 
+//    const changeToken = () => {
+//      updateCookie(String(newDate()))
+//}
+//     return (
+//         <>
+            // <div>Token: {value}</div>
+            // <button onClick={changeToken}>
+            //     Change Token
+            // </button>
+            // <button onClick={deleteCookie}>
+            // Delete Token
+            // </button>
+       //     </>
+//     )
+// }
+//////////////////////////////////
+
+
+//////////////////////////////////////////////////////////useOutside
+
+import {Dispatch, FC, SetStateAction, useState, useEffect, useRef} from "react";
+
+// type TypeOut = {
+//     ref: any
+//     isShow: boolean
+//     setIsShow: Dispatch<SetStateAction<boolean>>
+// }
+
+// export const useOutside = (initialVisible: boolean): TypeOut => {
+//   const [isShow, setIsShow] = useState((initialVisible);
+//   const ref = useRef<HTMLElement>(null);
+
+//   const handleClickOutside = (event: any) => {
+//       if(ref.current && !ref.current.contains(event.target)){
+//           setIsShow(false)
+//       }
+//   }
+
+//   useEffect(() => {
+//       document.addEventListener('click', handleClickOutside, true);
+//       return () => {
+//         document.removeEventListener('click', handleClickOutside, true);
+//       }
+//   });
+
+//  return [ref, isShow, setIsShow]
+//}
+
+//-----------------------
+//import { useOutside} from './useOutside'
+
+
+//const App: FC = () => {
+  const ref = useRef();
+//const { ref, isShow, setIsShow } = useOutside(false); //применение 
+// 
+//     return (
+// //         <>
+//             <div ref={ref}>Hide</div>
+//            </>
+// //     )
+// }
+//////////////////////////////////
